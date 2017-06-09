@@ -21,4 +21,7 @@
     <string name="play_icon_top_path_name">play_icon_top_path_name</string>
     <string name="play_icon_group_bottom">play_icon_group_bottom</string>
     <string name="play_icon_bottom_path_name">play_icon_bottom_path_name</string>
+    <string name="now_playing">Now PLaying</string>
+    <string name="now_play_value">Kygo, First Time with Selena Gomez</string>
+    <string name="facebooklogoimage">FaceBookLogoimage</string>
 </resources>

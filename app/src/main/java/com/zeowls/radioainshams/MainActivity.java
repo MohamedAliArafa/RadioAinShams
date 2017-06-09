@@ -2,16 +2,21 @@ package com.zeowls.radioainshams;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private MediaPlayer mediaPlayer;
     String vidAddress = "http://52.56.152.219:8000";
@@ -23,6 +28,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
         playPauseBtn = (ImageView) findViewById(R.id.pause_play_btn);
         mediaPlayer = new MediaPlayer();
         try {
@@ -30,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer.prepare();
             mediaPlayer.start();
             if (mediaPlayer.isPlaying()) {
-                playPauseBtn.setImageResource(R.drawable.ic_pause);
+                playPauseBtn.setImageResource(R.drawable.ic_pause_circle_filled);
             } else {
                 try {
-                    playPauseBtn.setImageResource(R.drawable.ic_play_button);
+                    playPauseBtn.setImageResource(R.drawable.ic_play_circle_filled);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -47,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (mediaPlayer.isPlaying()) {
                     mediaPlayer.pause();
-                    playPauseBtn.setImageResource(R.drawable.ic_play_button);
+                    playPauseBtn.setImageResource(R.drawable.ic_play_circle_filled);
                 } else {
                     try {
                         mediaPlayer.start();
-                        playPauseBtn.setImageResource(R.drawable.ic_pause);
+                        playPauseBtn.setImageResource(R.drawable.ic_pause_circle_filled);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -98,4 +113,42 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+            Toast.makeText(this, "Camera", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 }
