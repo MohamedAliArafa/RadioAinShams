@@ -1,5 +1,6 @@
 package com.zeowls.radioainshams;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -16,7 +17,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private MediaPlayer mediaPlayer;
     String vidAddress = "http://52.56.152.219:8000";
@@ -123,13 +124,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            Toast.makeText(this, "Camera", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getBaseContext(), ShowsActivity.class);
+            startActivity(intent);
+
+
         } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+            Intent intent = new Intent(getBaseContext(), BroadcastersActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

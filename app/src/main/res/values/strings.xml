@@ -24,4 +24,9 @@
     <string name="now_playing">Now PLaying</string>
     <string name="now_play_value">Kygo, First Time with Selena Gomez</string>
     <string name="facebooklogoimage">FaceBookLogoimage</string>
+    <string name="shows">البرامج</string>
+    <string name="broadcasters">المذيعين</string>
+    <string name="Communicate">تواصل معنا</string>
+    <string name="about_us">من نحن</string>
+    <string name="call_us">اتصل بنا</string>
 </resources>
